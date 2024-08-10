@@ -1,0 +1,6 @@
+<div *ngFor="let row of board" class="row">
+    <div *ngFor="let tile of row" class="tile" [ngClass]="{'light-tile': tile.color == 'light', 'dark-tile': tile.color == 'dark'}">
+        {{tile.pieceColor}}
+        {{tile.occupiedBy}}
+    </div>
+</div>
