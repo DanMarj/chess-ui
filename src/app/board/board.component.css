@@ -18,3 +18,16 @@
 .dark-tile {
     background-color: #705947;
 }
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+.white-piece {
+    filter: invert(100%) sepia(23%) saturate(653%) hue-rotate(147deg) brightness(115%) contrast(101%);
+}
+
+.black-piece {
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(278deg) brightness(103%) contrast(107%);
+}

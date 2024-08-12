@@ -1,6 +1,10 @@
 <div *ngFor="let row of board" class="row">
     <div *ngFor="let tile of row" class="tile" [ngClass]="{'light-tile': tile.color == 'light', 'dark-tile': tile.color == 'dark'}">
-        {{tile.pieceColor}}
-        {{tile.occupiedBy}}
+        <img *ngIf="tile.occupiedBy == 'Pawn'" src="../../assets/pieces/chess-pawn-svgrepo-com.svg" alt="Pawn" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}">
+        <img *ngIf="tile.occupiedBy == 'Bishop'" src="../../assets/pieces/chess-bishop-svgrepo-com.svg" alt="Bishop" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}">
+        <img *ngIf="tile.occupiedBy == 'Knight'" src="../../assets/pieces/chess-knight-svgrepo-com.svg" alt="Knight" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}"> 
+        <img *ngIf="tile.occupiedBy == 'Rook'" src="../../assets/pieces/chess-rook-svgrepo-com.svg" alt="Rook" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}">
+        <img *ngIf="tile.occupiedBy == 'Queen'" src="../../assets/pieces/chess-queen-svgrepo-com.svg" alt="Queen" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}">
+        <img *ngIf="tile.occupiedBy == 'King'" src="../../assets/pieces/chess-king-svgrepo-com.svg" alt="King" [ngClass]="{'white-piece': tile.pieceColor == 'White', 'black-piece': tile.pieceColor == 'Black'}">
     </div>
 </div>

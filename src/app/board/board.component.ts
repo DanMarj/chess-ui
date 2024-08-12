@@ -21,6 +21,7 @@ export class BoardComponent implements OnInit {
   @Input() enteredMove: string = '';
 
   board: tile[][];
+  fileMap: Map<String, number>;
 
   constructor() {
     let ret: tile[][] = [[],[],[],[],[],[],[],[]];
@@ -36,6 +37,9 @@ export class BoardComponent implements OnInit {
       }
     }
     this.board = ret;
+
+    this.fileMap = new Map<string, number>();
+    this.initializeFileMap();
   }
 
   ngOnInit(): void {
@@ -82,10 +86,35 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  // again, no validation so better type it right
   parseMoveString(moveString: string) {
     if(moveString.length == 2) {
-      
+      this.validateAndPerformPawnMove(moveString);
     }
+  }
+
+  validateAndPerformPawnMove(moveString: string) {
+    const rank = moveString.charAt(1);
+    const file = moveString.charAt(0);
+    const originRankIfSingleMove = (parseInt(rank)-2);
+    if(this.board[originRankIfSingleMove][this.getArrayIndexForFile(file)].occupiedBy == "Pawn" && this.board[parseInt(rank)-1][this.getArrayIndexForFile(file)].occupiedBy == "") {
+      console.log("valid move!");
+    } else {
+      console.log("invalid move");
+    }
+  }
+
+  getArrayIndexForFile(file:string): number {
+    return this.fileMap.get(file) || -1;
+  }
+
+  initializeFileMap() {
+    this.fileMap.set("a",0);
+    this.fileMap.set("b",1);
+    this.fileMap.set("c",2);
+    this.fileMap.set("d",3);
+    this.fileMap.set("e",4);
+    this.fileMap.set("f",5);
+    this.fileMap.set("g",6);
+    this.fileMap.set("h",7);
   }
 }
