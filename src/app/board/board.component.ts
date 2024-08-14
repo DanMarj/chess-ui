@@ -87,6 +87,8 @@ export class BoardComponent implements OnInit {
   }
 
   parseMoveString(moveString: string) {
+    // If length of move is 2, it must be a pawn move
+    // Change this to "begins with a letter", be it a file, an x, or a disambiguating file.
     if(moveString.length == 2) {
       this.validateAndPerformPawnMove(moveString);
     }
@@ -98,6 +100,7 @@ export class BoardComponent implements OnInit {
     const originRankIfSingleMove = (parseInt(rank)-2);
     if(this.board[originRankIfSingleMove][this.getArrayIndexForFile(file)].occupiedBy == "Pawn" && this.board[parseInt(rank)-1][this.getArrayIndexForFile(file)].occupiedBy == "") {
       console.log("valid move!");
+      this.performPawnMove(originRankIfSingleMove.toString(), rank, file);
     } else {
       console.log("invalid move");
     }
@@ -116,5 +119,21 @@ export class BoardComponent implements OnInit {
     this.fileMap.set("f",5);
     this.fileMap.set("g",6);
     this.fileMap.set("h",7);
+  }
+
+  performPawnMove(originRank: string, targetRank: string, file: string) {
+    // add pawn in target square
+    this.board[parseInt(targetRank)-1][this.fileMap.get(file) || -1 ] = {
+      ...this.board[parseInt(targetRank) -1][this.fileMap.get(file) || -1],
+      occupiedBy: "Pawn",
+      pieceColor: this.board[parseInt(originRank)][this.fileMap.get(file) || -1].pieceColor,
+    } as tile;
+    // remove pawn from initial square
+    this.board[parseInt(originRank)][this.fileMap.get(file) || -1] = {
+      ...this.board[parseInt(originRank)][this.fileMap.get(file) || -1],
+      occupiedBy: "",
+      pieceColor: "",
+    } as tile;
+    console.log(this.board);
   }
 }
