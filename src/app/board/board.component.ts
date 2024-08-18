@@ -8,6 +8,13 @@ export interface tile {
   pieceColor: string;
 }
 
+export interface Board {
+  tiles: tile[][];
+  whiteMove: boolean;
+  checkPresent: boolean;
+  checkmatePresent: boolean;
+}
+
 export const RANK_NAMES = ["1","2","3","4","5","6","7","8"];
 export const FILE_NAMES = ["a","b","c","d","e","f","g","h"];
 
